@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "api/proto";
+
+service BookingService {
+  rpc CreateBooking (CreateBookingRequest) returns (CreateBookingResponse);
+  rpc GetBooking (GetBookingRequest) returns (GetBookingResponse);
+  rpc CancelBooking (CancelBookingRequest) returns (CancelBookingResponse);
+}
+
+message CreateBookingRequest {
+  uint32 user_id = 1;
+  double total_price = 2;
+}
+
+message CreateBookingResponse {
+  string message = 1;
+}
+
+message GetBookingRequest {
+  uint32 booking_id = 1;
+}
+
+message GetBookingResponse {
+  uint32 booking_id = 1;
+  uint32 user_id = 2;
+  string user_name = 3;
+  string user_email = 4;
+  double total_price = 5;
+  string status = 6;
+}
+
+message CancelBookingRequest {
+  uint32 booking_id = 1;
+}
+
+message CancelBookingResponse {
+  string message = 1;
+}
