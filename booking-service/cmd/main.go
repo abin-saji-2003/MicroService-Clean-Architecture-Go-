@@ -4,30 +4,34 @@ import (
 	"log"
 	"net"
 
-	"booking-service/api/proto"
-	"booking-service/db"
-	"booking-service/internal/handlers"
-	bookingRepo "booking-service/internal/repository"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/db"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/handlers"
+	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/repository"
 
 	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 func main() {
+	// ✅ Initialize Database
 	db.InitDB()
 
-	userConn, err := grpc.Dial("user-service:50051", grpc.WithInsecure()) // Use the correct address
+	// ✅ Connect to gRPC User Service
+	userConn, err := grpc.Dial("user-service:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("❌ Failed to connect to User Service: %v", err)
 	}
 	defer userConn.Close()
+
 	userClient := userProto.NewUserServiceClient(userConn) // ✅ Create gRPC User Client
 
 	// ✅ Start gRPC Server for Booking Service
 	listener, err := net.Listen("tcp", ":50052")
 	if err != nil {
-		log.Fatalf("❌ Failed to listen: %v", err)
+		log.Fatalf("❌ Failed to listen on port 50052: %v", err)
 	}
 
 	grpcServer := grpc.NewServer()
@@ -40,6 +44,6 @@ func main() {
 
 	log.Println("✅ Booking Service is running on port 50052...")
 	if err := grpcServer.Serve(listener); err != nil {
-		log.Fatalf("❌ Failed to start server: %v", err)
+		log.Fatalf("❌ Failed to start gRPC server: %v", err)
 	}
 }

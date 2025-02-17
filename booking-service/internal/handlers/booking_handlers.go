@@ -4,24 +4,25 @@ import (
 	"context"
 	"fmt"
 
-	"booking-service/api/proto"
-	"booking-service/internal/models"
-	bookingRepo "booking-service/internal/repository"
-	userProto "user-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/models"
+	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/repository"
+	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
 
 	"gorm.io/gorm"
 )
 
 type BookingHandler struct {
 	bookingRepo bookingRepo.BookingRepository
-	userRepo    userProto.UserRepository
+	userClient  userProto.UserServiceClient // ✅ Use gRPC Client Instead of Repository
 	proto.UnimplementedBookingServiceServer
 }
 
-func NewBookingHandler(bookingRepo bookingRepo.BookingRepository, userRepo userProto.UserRepository) *BookingHandler {
+// ✅ Updated Constructor to Accept gRPC User Client
+func NewBookingHandler(bookingRepo bookingRepo.BookingRepository, userClient userProto.UserServiceClient) *BookingHandler {
 	return &BookingHandler{
 		bookingRepo: bookingRepo,
-		userRepo:    userRepo,
+		userClient:  userClient, // ✅ Use gRPC client for user service calls
 	}
 }
 
@@ -60,18 +61,20 @@ func (h *BookingHandler) GetBooking(ctx context.Context, req *proto.GetBookingRe
 		return nil, fmt.Errorf("failed to retrieve booking: %v", err)
 	}
 
-	// Fetch user details
-	user, err := h.userRepo.GetUserByID(booking.UserID)
+	// Fetch user details via gRPC
+	userResp, err := h.userClient.GetUserByID(ctx, &userProto.GetUserByIDRequest{
+		UserId: uint32(booking.UserID),
+	})
 	if err != nil {
-		return nil, fmt.Errorf("failed to retrieve user details: %v", err)
+		return nil, fmt.Errorf("failed to retrieve user details from User Service: %v", err)
 	}
 
 	// ✅ Return booking + user details
 	return &proto.GetBookingResponse{
 		BookingId:  uint32(booking.ID),
-		UserId:     uint32(user.ID),
-		UserName:   user.Name,  // ✅ Added User Name
-		UserEmail:  user.Email, // ✅ Added User Email
+		UserId:     userResp.UserId, // ✅ Retrieved via gRPC
+		UserName:   userResp.Name,   // ✅ Retrieved via gRPC
+		UserEmail:  userResp.Email,  // ✅ Retrieved via gRPC
 		TotalPrice: booking.TotalPrice,
 		Status:     booking.Status,
 	}, nil
