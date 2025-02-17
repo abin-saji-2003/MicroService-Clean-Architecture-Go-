@@ -9,7 +9,7 @@ import (
 	"booking-service/internal/handlers"
 	bookingRepo "booking-service/internal/repository"
 
-	userProto "user-service/api/proto"
+	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
 
 	"google.golang.org/grpc"
 )

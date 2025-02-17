@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"user-sevice/internal/models"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/models"
 
 	"gorm.io/gorm"
 )

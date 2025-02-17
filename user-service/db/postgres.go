@@ -2,13 +2,12 @@ package db
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"user-sevice/internal/models"
-
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/models"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"log"
+	"os"
 )
 
 var DB *gorm.DB
