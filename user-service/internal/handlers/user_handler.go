@@ -5,9 +5,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/models"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/repository"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/models"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/repository"
 
 	"golang.org/x/crypto/bcrypt"
 )

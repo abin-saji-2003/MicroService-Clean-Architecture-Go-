@@ -1,4 +1,4 @@
-module github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service
+module github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service
 
 go 1.22.6
 

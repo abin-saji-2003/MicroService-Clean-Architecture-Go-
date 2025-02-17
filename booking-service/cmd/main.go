@@ -4,12 +4,12 @@ import (
 	"log"
 	"net"
 
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/db"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/handlers"
-	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/repository"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/db"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/handlers"
+	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/repository"
 
-	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
+	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

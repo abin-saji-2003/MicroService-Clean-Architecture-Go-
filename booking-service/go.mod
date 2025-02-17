@@ -1,5 +1,4 @@
-module github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service
-
+module github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service
 go 1.22.6
 
 require (

@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/models"
-	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/repository"
-	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/models"
+	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/repository"
+	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
 
 	"gorm.io/gorm"
 )

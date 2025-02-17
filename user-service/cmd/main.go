@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/db"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/handlers"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/internal/repository"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/db"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/handlers"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/repository"
 
 	"log"
 	"net"

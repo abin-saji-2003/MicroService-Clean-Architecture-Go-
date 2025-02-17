@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/internal/models"
+	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/models"
 	"gorm.io/gorm"
 )
 
