@@ -1,5 +1,5 @@
-github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service v0.0.0-20250217090704-1ff2a6e27d6c h1:J4UyjfRc/doFRZYOTt0Iz1zBTWZVDQ3H6m9o80vuU/U=
-github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service v0.0.0-20250217090704-1ff2a6e27d6c/go.mod h1:ioezNECGJV2dL8OYAl2UZclWBHQJ8dETJH923xtFGVQ=
+github.com/abin-saji-2003/GRPC-Pkg v0.0.0-20250218042701-e0ea0cbb369b h1:RiWTwtx5Nme9O4ryiT5JOwTxIdCCFH3ooQRvgIwsTyE=
+github.com/abin-saji-2003/GRPC-Pkg v0.0.0-20250218042701-e0ea0cbb369b/go.mod h1:71/ytK6ar2Su41Q5q3LwzYeffGxNeGkt8fIBEhyb4s4=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

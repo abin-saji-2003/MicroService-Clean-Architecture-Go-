@@ -1,4 +1,5 @@
-module github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service
+module booking-service
+
 go 1.22.6
 
 require (
@@ -10,7 +11,7 @@ require (
 )
 
 require (
-	github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service v0.0.0-20250217090704-1ff2a6e27d6c
+	github.com/abin-saji-2003/GRPC-Pkg v0.0.0-20250218042701-e0ea0cbb369b // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/jackc/pgx/v5 v5.7.2 // indirect

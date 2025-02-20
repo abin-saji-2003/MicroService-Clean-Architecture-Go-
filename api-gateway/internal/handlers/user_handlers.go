@@ -4,11 +4,10 @@ import (
 	"context"
 	"net/http"
 
-	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/user-service/api/proto"
+	userProto "github.com/abin-saji-2003/GRPC-Pkg/proto/userpb"
 	"github.com/gin-gonic/gin"
 )
 
-// ✅ Register User Routes
 func RegisterUserRoutes(r *gin.Engine, userClient userProto.UserServiceClient) {
 	userRoutes := r.Group("/api/users")
 	{

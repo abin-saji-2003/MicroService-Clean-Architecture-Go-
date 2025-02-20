@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/models"
-	bookingRepo "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/booking-service/internal/repository"
-	userProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
+	"booking-service/internal/models"
+	bookingRepo "booking-service/internal/repository"
+	bookingProto "github.com/abin-saji-2003/GRPC-Pkg/proto/bookingpb"
+	userProto "github.com/abin-saji-2003/GRPC-Pkg/proto/userpb"
 
 	"gorm.io/gorm"
 )
@@ -15,7 +15,7 @@ import (
 type BookingHandler struct {
 	bookingRepo bookingRepo.BookingRepository
 	userClient  userProto.UserServiceClient // ✅ Use gRPC Client Instead of Repository
-	proto.UnimplementedBookingServiceServer
+	bookingProto.UnimplementedBookingServiceServer
 }
 
 // ✅ Updated Constructor to Accept gRPC User Client
@@ -27,7 +27,7 @@ func NewBookingHandler(bookingRepo bookingRepo.BookingRepository, userClient use
 }
 
 // ✅ Create Booking
-func (h *BookingHandler) CreateBooking(ctx context.Context, req *proto.CreateBookingRequest) (*proto.CreateBookingResponse, error) {
+func (h *BookingHandler) CreateBooking(ctx context.Context, req *bookingProto.CreateBookingRequest) (*bookingProto.CreateBookingResponse, error) {
 	// Validate input
 	if req.UserId == 0 || req.TotalPrice <= 0 {
 		return nil, fmt.Errorf("invalid input: user_id and total_price must be greater than zero")
@@ -43,11 +43,11 @@ func (h *BookingHandler) CreateBooking(ctx context.Context, req *proto.CreateBoo
 		return nil, fmt.Errorf("failed to create booking: %v", err)
 	}
 
-	return &proto.CreateBookingResponse{Message: "Booking created successfully"}, nil
+	return &bookingProto.CreateBookingResponse{Message: "Booking created successfully"}, nil
 }
 
 // ✅ Get Booking (Includes User Details)
-func (h *BookingHandler) GetBooking(ctx context.Context, req *proto.GetBookingRequest) (*proto.GetBookingResponse, error) {
+func (h *BookingHandler) GetBooking(ctx context.Context, req *bookingProto.GetBookingRequest) (*bookingProto.GetBookingResponse, error) {
 	if req.BookingId == 0 {
 		return nil, fmt.Errorf("invalid booking ID")
 	}
@@ -70,7 +70,7 @@ func (h *BookingHandler) GetBooking(ctx context.Context, req *proto.GetBookingRe
 	}
 
 	// ✅ Return booking + user details
-	return &proto.GetBookingResponse{
+	return &bookingProto.GetBookingResponse{
 		BookingId:  uint32(booking.ID),
 		UserId:     userResp.UserId, // ✅ Retrieved via gRPC
 		UserName:   userResp.Name,   // ✅ Retrieved via gRPC
@@ -81,7 +81,7 @@ func (h *BookingHandler) GetBooking(ctx context.Context, req *proto.GetBookingRe
 }
 
 // ✅ Cancel Booking
-func (h *BookingHandler) CancelBooking(ctx context.Context, req *proto.CancelBookingRequest) (*proto.CancelBookingResponse, error) {
+func (h *BookingHandler) CancelBooking(ctx context.Context, req *bookingProto.CancelBookingRequest) (*bookingProto.CancelBookingResponse, error) {
 	if req.BookingId == 0 {
 		return nil, fmt.Errorf("invalid booking ID")
 	}
@@ -94,5 +94,5 @@ func (h *BookingHandler) CancelBooking(ctx context.Context, req *proto.CancelBoo
 		return nil, fmt.Errorf("failed to cancel booking: %v", err)
 	}
 
-	return &proto.CancelBookingResponse{Message: "Booking canceled successfully"}, nil
+	return &bookingProto.CancelBookingResponse{Message: "Booking canceled successfully"}, nil
 }

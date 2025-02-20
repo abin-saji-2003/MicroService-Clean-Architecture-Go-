@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/api/proto"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/db"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/handlers"
-	"github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/tree/main/user-service/internal/repository"
+	"user-service/db"
+	"user-service/internal/handlers"
+	"user-service/internal/repository"
+
+	userProto "github.com/abin-saji-2003/GRPC-Pkg/proto/userpb"
 
 	"log"
 	"net"
@@ -24,7 +25,7 @@ func main() {
 	userRepo := repository.NewUserRepo(db.DB)
 	userHandler := handlers.NewUserHandler(userRepo)
 
-	proto.RegisterUserServiceServer(grpcServer, userHandler)
+	userProto.RegisterUserServiceServer(grpcServer, userHandler)
 
 	log.Println("User Service is running on port 50051...")
 	if err := grpcServer.Serve(listener); err != nil {

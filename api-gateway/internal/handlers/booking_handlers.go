@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	bookingProto "github.com/abin-saji-2003/MicroService-Clean-Architecture-Go-/booking-service/api/proto"
+	bookingProto "github.com/abin-saji-2003/GRPC-Pkg/proto/bookingpb"
 	"github.com/gin-gonic/gin"
 )
 
